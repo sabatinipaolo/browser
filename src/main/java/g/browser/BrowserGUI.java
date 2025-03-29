@@ -104,10 +104,49 @@ public class BrowserGUI extends javax.swing.JFrame {
 
     private void tastoIndietroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tastoIndietroActionPerformed
         // TODO add your handling code here:
+        
+        String url=cronologia.tornaIndietro();
+        if ( url.isEmpty()) return; //non dovrebbe accadere 
+        
+        addressBar.setText(url);
+        String pagina= bl.getPaginaFrom( url );
+        jTextPane1.setText(pagina);
+        
+        cronologia.dump();
+        
+        if (cronologia.haUnPrecedessore())
+            tastoIndietro.setEnabled(true);
+        else
+            tastoIndietro.setEnabled(false);
+        
+        if (cronologia.haUnSuccessore())
+            tastoAvanti.setEnabled(true);
+        else
+            tastoAvanti.setEnabled(false);
+        
     }//GEN-LAST:event_tastoIndietroActionPerformed
 
     private void tastoAvantiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tastoAvantiActionPerformed
         // TODO add your handling code here:
+        
+        String url=cronologia.vaiAvanti();
+        if ( url.isEmpty()) return; //non dovrebbe accadere 
+
+        addressBar.setText(url);
+        String pagina= bl.getPaginaFrom( url );
+        jTextPane1.setText(pagina);
+        
+        cronologia.dump();
+        
+        if (cronologia.haUnPrecedessore())
+            tastoIndietro.setEnabled(true);
+        else
+            tastoIndietro.setEnabled(false);
+        
+        if (cronologia.haUnSuccessore())
+            tastoAvanti.setEnabled(true);
+        else
+            tastoAvanti.setEnabled(false);
     }//GEN-LAST:event_tastoAvantiActionPerformed
 
     private void tastoGoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tastoGoActionPerformed
@@ -119,8 +158,19 @@ public class BrowserGUI extends javax.swing.JFrame {
         
         jTextPane1.setText(pagina);
         
+        cronologia.aggiungiInCronologia(url);
+        cronologia.dump();
         
-                
+        if (cronologia.haUnPrecedessore())
+            tastoIndietro.setEnabled(true);
+        else
+            tastoIndietro.setEnabled(false);
+        
+        if (cronologia.haUnSuccessore())
+            tastoAvanti.setEnabled(true);
+        else
+            tastoAvanti.setEnabled(false);
+            
     }//GEN-LAST:event_tastoGoActionPerformed
 
     /**
