@@ -112,8 +112,14 @@ public class BrowserGUI extends javax.swing.JFrame {
 
     private void tastoGoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tastoGoActionPerformed
         // TODO add your handling code here:
-        String pagina= bl.getPaginaFrom( addressBar.getText() );
+        String url=addressBar.getText();
+        if ( url.isEmpty()) return;
+        
+        String pagina= bl.getPaginaFrom( url );
+        
         jTextPane1.setText(pagina);
+        
+        
                 
     }//GEN-LAST:event_tastoGoActionPerformed
 
