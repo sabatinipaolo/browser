@@ -10,8 +10,8 @@ package g.browser;
  */
 class BrowserBL {
 
-    String getPaginaFrom(String text) {
-        return "<h1> Pagina fittizia</h1>";
+    String getPaginaFrom(String url ) {
+        return "<h1>"+ url +"</h1><h3> fittizia </h3> <p> è solo un echo dell'url</p>";
     }
     
 }
