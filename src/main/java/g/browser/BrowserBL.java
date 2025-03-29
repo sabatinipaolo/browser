@@ -9,5 +9,9 @@ package g.browser;
  * @author paolo
  */
 class BrowserBL {
+
+    String getPaginaFrom(String text) {
+        return "<h1> Pagina fittizia</h1>";
+    }
     
 }

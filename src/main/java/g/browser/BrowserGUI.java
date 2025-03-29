@@ -18,6 +18,7 @@ public class BrowserGUI extends javax.swing.JFrame {
         initComponents();
         tastoAvanti.setEnabled(false);
         tastoIndietro.setEnabled(false);
+        jTextPane1.setContentType("text/html");
         
 
     }
@@ -48,8 +49,18 @@ public class BrowserGUI extends javax.swing.JFrame {
         });
 
         tastoAvanti.setText(">>");
+        tastoAvanti.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                tastoAvantiActionPerformed(evt);
+            }
+        });
 
         tastoGo.setText("GO");
+        tastoGo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                tastoGoActionPerformed(evt);
+            }
+        });
 
         jScrollPane1.setViewportView(jTextPane1);
 
@@ -94,6 +105,17 @@ public class BrowserGUI extends javax.swing.JFrame {
     private void tastoIndietroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tastoIndietroActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_tastoIndietroActionPerformed
+
+    private void tastoAvantiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tastoAvantiActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_tastoAvantiActionPerformed
+
+    private void tastoGoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tastoGoActionPerformed
+        // TODO add your handling code here:
+        String pagina= bl.getPaginaFrom( addressBar.getText() );
+        jTextPane1.setText(pagina);
+                
+    }//GEN-LAST:event_tastoGoActionPerformed
 
     /**
      * @param args the command line arguments
