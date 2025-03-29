@@ -1,60 +1,46 @@
 package g.browser;
 
-import java.util.ArrayList;
 
 public class Cronologia {
 
-    private ArrayList<String> elenco = new ArrayList<String>();
-    private int indiceCronologia = -1;
-    private int dimensioneCronologia = 0;
-
+    private String[]  elenco = new String [100];
+    
+    private int dimensioneCronologia = 0; //Mi serve sapere quanti dei 100
+                                          // sto effettivamente usando
+    
+    private int indiceCronologia = -1 ; //all'inizio è vuota 
+                                        //inizializzo = -1 
+                                        // perché 0 è un indice valido
+                                        // maledetti info! contano da zero!!
+    
     public boolean isVuota() {
-        return elenco.isEmpty();
+        return (dimensioneCronologia == 0 ) ;
     }
 
     public boolean haUnSuccessore() {
         return (indiceCronologia < (dimensioneCronologia-1));
     }
-    
-    public boolean haUnPrecedessore() {
-        return (indiceCronologia > 0 );
-    }
-    
-    public String tornaIndietro() {
-        if (!haUnPrecedessore() ) throw new RuntimeException(" la cronologia non ha un predecessore!! Usa if crono.haUnpredecessore() prima di usare questo metodo!! ");
-        indiceCronologia--;
-        String urlString = elenco.get(indiceCronologia);
-        
-        
-        return urlString;
-    }
-    
     public String vaiAvanti() {
-        
-        if (!haUnSuccessore()) throw new RuntimeException(" la cronologia non ha un successore!! Usa if crono.haUnSuccessore() prima di usare questo metodo!! ");
-       
         indiceCronologia ++;
-        String urlString = elenco.get(indiceCronologia); 
+        String urlString = elenco[indiceCronologia]; 
         return urlString;
     }
 
+    public boolean haUnPrecedessore() {
+        return (indiceCronologia > 0 );
+    }
+    public String tornaIndietro() {
+        indiceCronologia--;
+        String urlString = elenco[indiceCronologia];
+        return urlString;
+    }
+        
     public void aggiungiInCronologia(String urlString) {
 
         indiceCronologia++;
         dimensioneCronologia = indiceCronologia + 1;
-
-        if (indiceCronologia == elenco.size()) {
-
-            elenco.add(urlString);  
-
-        } else {
-            elenco.set(indiceCronologia, urlString);
-        }
-
+        elenco[indiceCronologia]=urlString;
     }
-
-
-
 
     public void dump() {
 
@@ -62,25 +48,23 @@ public class Cronologia {
         int i = -1;
         appo += i + " " + (i == indiceCronologia ? "=>" : "  ") +"\n";
 
-        for (i = 0; i < elenco.size(); i++) {
+        for (i = 0; i < dimensioneCronologia; i++) {
             appo += i + " " + (i == indiceCronologia ? "=>" : "  ")
-                    + elenco.get(i)
+                    + elenco[i]
                     + (i == dimensioneCronologia ? "<= dimensione cronologia " : "                         ")
-                    + (i == elenco.size() ? "<= elenco.size()" : "                ")
                     + " \n";
         }
 
-        i = elenco.size();
+        i = dimensioneCronologia;
         appo += i + " " + (i == indiceCronologia ? "=>" : "  ")
                 + "            "
                 + (i == dimensioneCronologia ? "<= dimensione cronologia " : "                         ")
-                + (i == elenco.size() ? "<= elenco.size()" : "                ")
                 + " \n";
         
         
         if (isVuota()) {
             appo += " non ci sono precedessori e scuccessori ";
-        } else { String sito = elenco.get(indiceCronologia);
+        } else { String sito = elenco[indiceCronologia];
             if (haUnSuccessore()) {
                
                 appo += "\n" + sito + "     ha un successore ";
