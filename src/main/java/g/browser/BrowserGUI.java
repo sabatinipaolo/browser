@@ -10,12 +10,16 @@ package g.browser;
  */
 public class BrowserGUI extends javax.swing.JFrame {
     private BrowserBL bl = new BrowserBL();
+    private Cronologia cronologia = new Cronologia();
     /**
      * Creates new form BrowserGUI
      */
     public BrowserGUI() {
         initComponents();
+        tastoAvanti.setEnabled(false);
+        tastoIndietro.setEnabled(false);
         
+
     }
 
     /**
