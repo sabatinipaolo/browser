@@ -55,6 +55,12 @@ public class BrowserGUI extends javax.swing.JFrame {
             }
         });
 
+        addressBar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                addressBarActionPerformed(evt);
+            }
+        });
+
         tastoGo.setText("GO");
         tastoGo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -172,6 +178,11 @@ public class BrowserGUI extends javax.swing.JFrame {
             tastoAvanti.setEnabled(false);
             
     }//GEN-LAST:event_tastoGoActionPerformed
+
+    private void addressBarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addressBarActionPerformed
+        // TODO add your handling code here:
+        tastoGoActionPerformed(evt);  //TODO : cambiare source dell'evento?
+    }//GEN-LAST:event_addressBarActionPerformed
 
     /**
      * @param args the command line arguments
