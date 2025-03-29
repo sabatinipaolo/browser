@@ -13,28 +13,31 @@ public class Cronologia {
     }
 
     public boolean haUnSuccessore() {
-        return (indiceCronologia < (dimensioneCronologia-1));
+        return (indiceCronologia < (dimensioneCronologia - 1));
     }
-    
+
     public boolean haUnPrecedessore() {
-        return (indiceCronologia > 0 );
+        return (indiceCronologia > 0);
     }
-    
+
     public String tornaIndietro() {
-        if (!haUnPrecedessore() ) throw new RuntimeException(" la cronologia non ha un predecessore!! Usa if crono.haUnpredecessore() prima di usare questo metodo!! ");
+        if (!haUnPrecedessore()) {
+            throw new RuntimeException(" la cronologia non ha un predecessore!! Usa if crono.haUnpredecessore() prima di usare questo metodo!! ");
+        }
         indiceCronologia--;
         String urlString = elenco.get(indiceCronologia);
-        
-        
+
         return urlString;
     }
-    
+
     public String vaiAvanti() {
-        
-        if (!haUnSuccessore()) throw new RuntimeException(" la cronologia non ha un successore!! Usa if crono.haUnSuccessore() prima di usare questo metodo!! ");
-       
-        indiceCronologia ++;
-        String urlString = elenco.get(indiceCronologia); 
+
+        if (!haUnSuccessore()) {
+            throw new RuntimeException(" la cronologia non ha un successore!! Usa if crono.haUnSuccessore() prima di usare questo metodo!! ");
+        }
+
+        indiceCronologia++;
+        String urlString = elenco.get(indiceCronologia);
         return urlString;
     }
 
@@ -45,7 +48,7 @@ public class Cronologia {
 
         if (indiceCronologia == elenco.size()) {
 
-            elenco.add(urlString);  
+            elenco.add(urlString);
 
         } else {
             elenco.set(indiceCronologia, urlString);
@@ -53,58 +56,52 @@ public class Cronologia {
 
     }
 
-
-
-
-    public void dump() {
+    public String dump() {
 
         String appo = "Cronologia: \n";
-        int i = -1;
-        appo += i + " " + (i == indiceCronologia ? "=>" : "  ") +"\n";
 
+        if (isVuota()) {
+            appo += "  è vuota \n\n"
+                    + "-1 <- indice Cronologia \n"
+                    + "0 <- dimensione cronologia\n\n"
+                    + "NON  ha un precedessore  NON  ha un successore\n";
+            System.out.println(appo);
+            return appo;
+        }
+
+        int i;
         for (i = 0; i < elenco.size(); i++) {
-            appo += i + " " + (i == indiceCronologia ? "=>" : "  ")
+            appo += i + " "
                     + elenco.get(i)
-                    + (i == dimensioneCronologia ? "<= dimensione cronologia " : "                         ")
-                    + (i == elenco.size() ? "<= elenco.size()" : "                ")
+                    + (i == indiceCronologia ? " <- idnice cronologia " : "")
+                    + (i == dimensioneCronologia ? "<- dimensione cronologia " : "")
                     + " \n";
         }
 
         i = elenco.size();
-        appo += i + " " + (i == indiceCronologia ? "=>" : "  ")
-                + "            "
-                + (i == dimensioneCronologia ? "<= dimensione cronologia " : "                         ")
-                + (i == elenco.size() ? "<= elenco.size()" : "                ")
+        appo += i + " "
+                + "         "
+                + (i == indiceCronologia ? " <- idnice cronologia " : "") //non dovrebbe accadere ....
+                + (i == dimensioneCronologia ? "<- dimensione cronologia " : "")
                 + " \n";
-        
-        
-        if (isVuota()) {
-            appo += " non ci sono precedessori e scuccessori ";
-        } else { String sito = elenco.get(indiceCronologia);
-            if (haUnSuccessore()) {
-               
-                appo += "\n" + sito + "     ha un successore ";
-            } else {
-              
-                appo += "\n" + sito + " NON  ha un successore";
-            }
 
-            if (haUnPrecedessore()) {
-                
-                appo += "\n" + sito + "      ha un precedessore \n";
-            } else {
-                
-                appo += "\n" + sito + " NON  ha un precedessore \n";
-            }
+        appo += "\n";
+        if (haUnPrecedessore()) {
+
+            appo += "      ha un precedessore ";
+        } else {
+
+            appo += " NON  ha un precedessore ";
+        }
+        if (haUnSuccessore()) {
+            appo += "      ha un successore\n ";
+        } else {
+
+            appo += " NON  ha un successore\n";
         }
 
-        System.out.println( appo);
+        System.out.println(appo);
+        return appo;
     }
 
-
-    
-    
-    
-    
-    
 }
