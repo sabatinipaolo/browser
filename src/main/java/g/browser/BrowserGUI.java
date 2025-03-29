@@ -9,12 +9,13 @@ package g.browser;
  * @author paolo
  */
 public class BrowserGUI extends javax.swing.JFrame {
-
+    private BrowserBL bl = new BrowserBL();
     /**
      * Creates new form BrowserGUI
      */
     public BrowserGUI() {
         initComponents();
+        
     }
 
     /**
